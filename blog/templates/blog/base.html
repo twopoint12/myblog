@@ -1,0 +1,62 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+        <!-- Bootstrap -->
+    <link href="{% static 'blog/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{% static 'blog/js/jquery-1.12.4.min.js' %}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+    <link href="{% static 'blog/css/style.css' %}" type="text/css" rel="stylesheet" media="all">
+    <link href="{% static 'blog/css/highlights/friendly.css' %}" type="text/css" rel="stylesheet" media="all">
+
+    <title>☆玄☆的个人博客</title>
+</head>
+<body>
+  <!--top navigation bar-->
+    <nav class="navbar navbar-inverse my-navbar" role="navigation">
+        <div class="container">
+            <div class="navbar-header header-logo">
+                <a class="navbar-brand" href="{% url 'index' %}">☆玄☆的个人博客</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse top-nav">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="glyphicon glyphicon-home" href="{% url 'index' %}"></a></li>
+                    <li><a href="{% url 'index' %}" class="active">博客</a></li>
+                    <li><a href="{% url 'about_site' %}">关于本站</a></li>
+                    <li><a href="{% url 'about_me' %}" >关于我</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+  <!--//top navigation bar-->
+    <div class="container middle-page">
+        {% block middle-page %}
+        {% endblock middle-page %}
+    </div>
+    <div class="footer">
+        <div class="container">
+            <div class="col-md-12">
+                <p class="copyright">© 2017 ☆玄☆的个人博客</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

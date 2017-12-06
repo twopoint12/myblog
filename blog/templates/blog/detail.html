@@ -1,0 +1,66 @@
+{% extends 'blog/base.html' %}
+{% block middle-page %}
+    <article>
+    <h2>{{ article.title }}</h2>
+    <p class="entry-meta">
+        <span class="glyphicon glyphicon-time"></span>
+        <span>
+            <time class="post-date" datetime="{{ article.created_time }}">{{ article.created_time }}</time>
+        </span>
+    </p>
+    <p>{{ article.body|safe }}</p>
+    </article>
+    <div class="content-bottom">
+        {% csrf_token %}
+        <!-- like script -->
+        <script type="text/javascript" >
+            $.ajaxSetup({
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}' }
+            });
+            $(function () {
+                var likeButton = $('div.content-bottom>button');
+                likeButton.click(function () {
+                    var articleId = {{ article.id }};
+                    var likes = parseInt(likeButton.find('span.likes').text());
+                    $.post({% url 'update_likes' %}, {
+                        'articleId': articleId,
+                        'likes': likes
+                    },
+                    function (data, status) {
+                        if (status === 'success') {
+                            likes = data['likes'];
+                            likeButton.find('span.likes').text(likes);
+                        }
+                    });
+                });
+            });
+        </script>
+        <!-- like script END -->
+        <button class="btn btn-sm">
+            <span class="glyphicon glyphicon-thumbs-up"></span>
+            <span class="likes">{{ article.likes }}</span>
+        </button>
+        <!-- JiaThis Button BEGIN -->
+        <span class="jiathis_style">
+        <a class="jiathis_button_qzone"></a>
+        <a class="jiathis_button_tsina"></a>
+        <a class="jiathis_button_weixin"></a>
+        <a class="jiathis_button_cqq"></a>
+        <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+        <a class="jiathis_counter_style"></a>
+        </span>
+        <script type="text/javascript" >
+            var jiathis_config={
+                siteNum:5,
+                sm:"tqq,renren,tieba,fb,twitter",
+                summary:"",
+                shortUrl:false,
+                hideMore:true
+            }
+        </script>
+        <script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
+        <!-- JiaThis Button END -->
+    </div>
+
+
+{% endblock middle-page %}

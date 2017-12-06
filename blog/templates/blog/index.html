@@ -1,0 +1,80 @@
+{% extends 'blog/base.html' %}
+{% load blog_tags %}
+{% block middle-page %}
+    <main class="col-md-8">
+        {% for article in article_list %}
+            <article>
+                <h2 class="entry-title">
+                    <a href="{% url 'detail' article.id %}">{{ article.title }}</a>
+                </h2>
+                <div class="entry-meta">
+                    <button type="button" class="btn btn-primary btn-xs" onclick="window.location.href='{% url 'category' article.category.id %}'">
+                        {{ article.category.name }}
+                    </button>
+                    <span class="glyphicon glyphicon-time"></span>
+                    <span>
+                        <time class="post-date" datetime="{{ article.created_time }}">{{ article.created_time }}</time>
+                    </span>
+                </div>
+                <div class="entry-content">
+                    <p>{{ article.excerpt }}</p>
+                    <div class="read-more">
+                        <a href="{% url 'detail' article.id %}" class="more-link"><span>继续阅读</span></a>
+                    </div>
+                </div>
+            </article>
+        {% empty %}
+            <div class="no-article">暂时还没有发布的文章！</div>
+        {% endfor %}
+    </main>
+    <aside class="col-md-4">
+        <div class="widget widget-recent-posts">
+            {% get_recent_articles as recent_article_list %}
+            <ul>
+                <li>
+                    <h3 class="widget-title">最新文章</h3>
+                </li>
+                {% for article in recent_article_list %}
+                <li>
+                    <a href="{% url 'detail' article.id %}">{{ article.title }}</a>
+                </li>
+                {% empty %}
+                <li>暂无文章！</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="widget widget-archives">
+            {% archives as date_list %}
+            <ul>
+                <li>
+                    <h3 class="widget-title">归档</h3>
+                </li>
+                {% for date in date_list %}
+                <li>
+                    <a href="{% url 'archives' date.year date.month %}">{{ date.year }} 年 {{ date.month }} 月</a>
+                </li>
+                {% empty %}
+                <li>暂无归档！</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="widget widget-category">
+            {% get_category_count as category_count_list %}
+            <ul>
+                <li>
+                    <h3 class="widget-title">分类</h3>
+                </li>
+                {% for category_count in category_count_list %}
+                <li>
+                    <a href="{% url 'category' category_count.category_id %}">
+                        {{ category_count.category__name }}
+                        <span class="post-count">({{ category_count.count }})</span>
+                    </a>
+                </li>
+                {% empty %}
+                <li>暂无分类！</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </aside>
+{% endblock middle-page %}

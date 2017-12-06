@@ -1,0 +1,140 @@
+/*
+ * Override Bootstrap's default container.
+ */
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 970px;
+  }
+}
+@media(max-width: 992px) {
+    aside{
+        display: none;
+    }
+}
+body{
+    font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei",
+    "WenQuanYi Micro Hei", sans-serif;
+}
+.my-navbar{
+    padding: 2em 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.header-logo a {
+    font-weight: 700;
+    font-size: 25px;
+    margin: 0;
+}
+.top-nav {
+    padding-right: 0;
+}
+.top-nav ul {
+    margin: 0;
+}
+.top-nav ul li{
+    list-style-type:none;
+}
+.top-nav ul li a {
+    margin: 0 20px;
+    font-weight: 600;
+    font-size: 16px;
+}
+.col-md-8{
+    padding-left: 0
+}
+.entry-meta button{
+    background-color: grey;
+    border: 0
+}
+.entry-meta span{
+    color: grey;
+}
+.entry-meta .glyphicon-time{
+    margin-left: 5px;
+}
+.entry-content{
+    margin-top: 5px;
+}
+.read-more a{
+    background-image: url(../images/arrow.png);
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    color: #111111;
+    text-decoration: none;
+    transition: .5s
+}
+.read-more a span{
+    margin-left: 1.5em
+}
+.read-more a:hover{
+    background-image: url(../images/arrow2.png);
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    color:#e80000;
+}
+aside ul{
+    list-style-type: none;
+}
+div.content-bottom{
+    margin-top: 2em;
+}
+div.content-bottom button{
+
+}
+div.content-bottom button:hover{
+    background-color: lightgrey;
+}
+div.content-bottom .glyphicon-thumbs-up{
+    float: left;
+    font-size: medium;
+    color: #e45d63;
+    margin-right: 5px;
+}
+div.content-bottom .likes{
+    font-size: small;
+    font-weight: bold;
+    color: #e45d63;
+}
+div.content-bottom .jiathis_style{
+    float: right;
+    padding-top: 10px;
+}
+.footer {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+.footer .container{
+    padding: 0;
+}
+.copyright {
+    text-align: center;
+    padding-top: 1em;
+    margin: 0;
+    border-top: 1px solid #eee;
+    color: #666;
+}
+.about-site h2{
+    font-weight: bold;
+}
+.about-site div{
+    font-size: large;
+    margin-bottom: 2em;
+}
+div.about-me-left .nickname{
+    font-size: x-large;
+    margin-top: 1em;
+}
+div.about-me-left .text-muted{
+    font-size: large;
+}
+.about-me-content h2{
+    font-weight: bold;
+}
+.about-me-content div{
+    font-size: large;
+    margin-bottom: 2em;
+}
