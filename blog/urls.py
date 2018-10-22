@@ -8,5 +8,6 @@ urlpatterns = [
     url(r'^category/(\d+)/$', views.category, name='category'),
     url(r'^update_likes/$', views.update_likes, name='update_likes'),
     url(r'^about_site/$', views.about_site, name='about_site'),
-    url(r'^about_me/$', views.about_me, name='about_me')
+    url(r'^about_me/$', views.about_me, name='about_me'),
+    url(r'^my_ip/$', views.my_ip, name='my_ip')
 ]

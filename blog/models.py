@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Count
 
 
 # Create your models here.
@@ -26,7 +27,17 @@ class Article(models.Model):
     author = models.ForeignKey(User)
     category = models.ForeignKey(Category)
     tags = models.ManyToManyField(Tag, blank=True)
-    likes = models.IntegerField(default=0)
+
+    def get_likes(self):
+        return Like.objects.filter(article=self).count()
 
     def __str__(self):
         return self.title
+
+
+class Like(models.Model):
+    ip = models.CharField(max_length=20)
+    article = models.ForeignKey(Article)
+
+    def __str__(self):
+        return self.ip+'_like_'+self.article.title

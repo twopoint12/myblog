@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Tag, Article
+from .models import Category, Tag, Article, Like
 from django.db import models
 from django.forms import Textarea
 
@@ -20,6 +20,11 @@ class ArticleAdmin(admin.ModelAdmin):
     }
 
 
+class LikeAdmin(admin.ModelAdmin):
+    list_display = ('ip', 'article')
+
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Article, ArticleAdmin)
+admin.site.register(Like, LikeAdmin)

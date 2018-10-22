@@ -23,13 +23,15 @@
                     var articleId = {{ article.id }};
                     var likes = parseInt(likeButton.find('span.likes').text());
                     $.post({% url 'update_likes' %}, {
-                        'articleId': articleId,
-                        'likes': likes
+                        'articleId': articleId
                     },
                     function (data, status) {
                         if (status === 'success') {
-                            likes = data['likes'];
-                            likeButton.find('span.likes').text(likes);
+                            if (data['status'] === 'insert success') {
+                                likeButton.find('span.likes').text(likes+1);
+                            } else if (data['status'] === 'insert fail') {
+                                window.alert('同一IP只能点赞一次，你已经点过赞了。')
+                            }
                         }
                     });
                 });
@@ -38,7 +40,7 @@
         <!-- like script END -->
         <button class="btn btn-sm">
             <span class="glyphicon glyphicon-thumbs-up"></span>
-            <span class="likes">{{ article.likes }}</span>
+            <span class="likes">{{ article.get_likes }}</span>
         </button>
         <!-- JiaThis Button BEGIN -->
         <span class="jiathis_style">

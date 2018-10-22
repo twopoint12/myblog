@@ -1,7 +1,7 @@
 import markdown
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, JsonResponse
-from .models import Article, Category
+from .models import Article, Category, Like
 
 
 # Create your views here.
@@ -41,10 +41,32 @@ def category(request, pk):
 def update_likes(request):
     if request.method == 'POST':
         article_id = request.POST['articleId']
-        likes = request.POST['likes']
-        likes = int(likes) + 1
-        Article.objects.filter(id=article_id).update(likes=likes)
-        return JsonResponse({"status": "Complete", "likes": likes}, safe=False)
+        article = Article.objects.get(id=article_id)
+        ip = get_ip(request)
+        insert_success = Like.objects.get_or_create(ip=ip, article=article)[1]
+        if insert_success:
+            json_response = JsonResponse({"status": "insert success"}, safe=False)
+        else:
+            json_response = JsonResponse({"status": "insert fail"}, safe=False)
+        return json_response
+
+
+def get_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]  # 所以这里是真实的ip
+    else:
+        ip = request.META.get('REMOTE_ADDR')  # 这里获得代理ip
+    return ip
+
+
+def my_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]  # 所以这里是真实的ip
+    else:
+        ip = request.META.get('REMOTE_ADDR')  # 这里获得代理ip
+    return HttpResponse("<h1>Your ip is: %s</h1>" % ip)
 
 
 def about_site(request):
