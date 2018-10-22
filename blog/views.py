@@ -66,7 +66,7 @@ def my_ip(request):
         ip = x_forwarded_for.split(',')[0]  # 所以这里是真实的ip
     else:
         ip = request.META.get('REMOTE_ADDR')  # 这里获得代理ip
-    return HttpResponse("<h1>Your ip is: %s</h1><br><h1>x_forwarded_for: %s</h1>" % (ip, x_forwarded_for))
+    return HttpResponse("<h1>Your ip is: %s</h1>" % ip)
 
 
 def about_site(request):
