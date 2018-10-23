@@ -15,6 +15,12 @@
 body{
     font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei",
     "WenQuanYi Micro Hei", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+pre{
+    font-size: 16px;
+    line-height: 1.5;
 }
 .my-navbar{
     padding: 2em 0;
