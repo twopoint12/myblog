@@ -1,0 +1,74 @@
+{% load staticfiles %}
+<!-- plugins for husky -->
+<link rel="stylesheet" type="text/css" href="{% static 'blog/css/husky.css' %}" />
+<script type="text/javascript" src="{% static 'blog/js/Tdrag.js' %}"></script>
+<script>
+    $(function () {
+        var container = $(".husky-container");
+        container.Tdrag();
+        var isBig = true;
+        container.dblclick(function(){
+            if (isBig) {
+                container.animate({
+                    height: '68vh',
+                    left: '-70vw',
+                    top: '84vh'
+                });
+                isBig = false;
+            } else {
+                container.animate({
+                    height: '100vh',
+                    left: '0vw',
+                    top: '47.5vh'
+                });
+                isBig = true;
+            }
+        });
+    });
+</script>
+<div class="husky-container">
+    <div class="content content--husky">
+        <div class="husky">
+            <div class="husky-mane">
+                <div class="husky-coat"></div>
+            </div>
+            <div class="husky-body">
+                <div class="husky-head">
+                    <div class="husky-ear"></div>
+                    <div class="husky-ear"></div>
+                    <div class="husky-face">
+                        <div class="husky-eye"></div>
+                        <div class="husky-eye"></div>
+                        <div class="husky-nose"></div>
+                        <div class="husky-mouth">
+                            <div class="husky-lips"></div>
+                            <div class="husky-tongue"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="husky-torso"></div>
+            </div>
+            <div class="husky-legs">
+                <div class="husky-front-legs">
+                    <div class="husky-leg"></div>
+                    <div class="husky-leg"></div>
+                </div>
+                <div class="husky-hind-leg">
+                </div>
+            </div>
+            <div class="husky-tail">
+                <div class="husky-tail">
+                    <div class="husky-tail">
+                        <div class="husky-tail">
+                            <div class="husky-tail">
+                                <div class="husky-tail">
+                                    <div class="husky-tail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /content -->
+</div><!-- /container -->
