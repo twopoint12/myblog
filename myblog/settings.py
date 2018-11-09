@@ -25,7 +25,7 @@ SECRET_KEY = '_v)uc_i!dsg&lbhx=%sy05copnrq-3$wsfbz_8q0x(ap+t17u1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', 'http://47.96.133.241/']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', 'http://www.xuansblog.com/']
 
 
 # Application definition
